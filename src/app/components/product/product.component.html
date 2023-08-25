@@ -1,0 +1,35 @@
+<section class="product-list">
+  <div class="filters">
+    <select  class="filter-input">
+      <option value="">All Types</option>
+      <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+    </select>
+    <input type="text"  placeholder="Search by name or model">
+    <select>
+      <option value="price">Sort by Price</option>
+      <option value="year">Sort by Year</option>
+    </select>
+    <input type="number"  placeholder="Min Price">
+    <input type="number"  placeholder="Max Price">
+    <input type="number"  placeholder="Min Year">
+    <input type="number"  placeholder="Max Year">
+  </div>
+  <div class="products">
+    <div class="product" *ngFor="let product of products">
+      <a routerLink="/product/{{product.id}}">
+        <div class="image">
+          <img [src]="product?.image" alt="Product Image">
+        </div>
+        <div class="details">
+          <h2>{{ product.name }}</h2>
+          <p>Mark: {{ product.model }}</p>
+          <p>Price: {{ product.price}} грн</p>
+          <p>Year: {{ product.year }} р.</p>
+          <div [ngClass]="{'status-green': product.isAvailable === true, 'status-red': product.isAvailable === false}">
+            Status: {{product.status}}
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>

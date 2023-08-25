@@ -1,0 +1,28 @@
+<section class="product">
+  <div class="image">
+    <img [src]="singleProduct.image" alt="Product Image">
+  </div>
+  <div class="details">
+    <h2>{{ singleProduct.name }}</h2>
+    <p class="field">
+      <span class="label">Mark:</span> {{ singleProduct.model }}
+    </p>
+    <div class="price-status">
+      <p class="price">
+        <span class="label">Price:</span> {{ singleProduct.price }} грн
+      </p>
+    </div>
+    <p class="field">
+      <span class="label">Year:</span> {{ singleProduct.year }} р.
+    </p>
+    <div [ngClass]="{'status-green': singleProduct.isAvailable === true, 'status-red': singleProduct.isAvailable === false}">
+      {{ singleProduct.status }}
+    </div>
+    <hr/>
+    <p class="description">
+      <span class="label">Description:</span> {{ singleProduct.description }}
+    </p>
+    <button class="order-button">Order Now</button>
+  </div>
+</section>
+
