@@ -1,11 +1,11 @@
 <section class="product">
   <div class="image">
-    <img [src]="singleProduct.image" alt="Product Image">
+    <img class="avatar" src="http://localhost:3000/{{singleProduct.image}}" alt="Product Image">
   </div>
   <div class="details">
-    <h2>{{ singleProduct.name }}</h2>
+    <h2>Mark: {{ singleProduct.name }}</h2>
     <p class="field">
-      <span class="label">Mark:</span> {{ singleProduct.model }}
+      <span class="label">Model:</span> {{ singleProduct.model }}
     </p>
     <div class="price-status">
       <p class="price">
@@ -22,7 +22,63 @@
     <p class="description">
       <span class="label">Description:</span> {{ singleProduct.description }}
     </p>
-    <button class="order-button">Order Now</button>
+    <button class="order-button" (click)="OrderProduct()">Order Now</button>
+    <a routerLink="/edit/{{singleProduct.id}}"><button [hidden]="!isAdmin" class="edit-button">Edit</button></a>
+    <button [hidden]="!isAdmin" class="delete-button" (click)="DeleteProduct()">Delete</button>
+
+  </div>
+
+
+  <div [hidden]="!isShowFullImage">
+    <div class="image-viewer" >
+      <button (click)="prevImage()">Previous</button>
+      <div class="image-container1" >
+        <img src="http://localhost:3000/{{currentProductId}}/{{currentImageSrc}}" alt="Full-screen Image">
+      </div>
+      <div class="nav-buttons"  [hidden]="!isShowFullImage">
+        <button (click)="closeViewer()">X</button>
+      </div>
+      <button (click)="nextImage()">Next</button>
+    </div>
   </div>
 </section>
 
+<button class="showButton" [hidden]="!isAdmin" (click)="changeAddImage()">Add new image</button>
+<div class="form-group" [hidden]="!addImageShow">
+  <label for="image">Upload Image</label>
+  <input type="file" id="image" name="image"  accept="image/*" multiple (change)="onImageSelected($event)">
+  <button (click)="addImageToProduct()">Add</button>
+</div>
+
+<div class="image-gallery" #imageGallery>
+  <div class="image-container" #imageContainer>
+    <div class="image1" *ngFor="let image of images">
+      <img src="http://localhost:3000/{{currentProductId}}/{{image}}" alt="Image" (click)="showImageCountIndex(image)">
+    </div>
+  </div>
+</div>
+
+<div class="modal" [ngClass]="{'show': isModalOpen}">
+  <div class="modal-content">
+    <span class="close" (click)="closeModal()">&times;</span>
+    <h2>Сontact us</h2>
+    <div class="contact-info">
+      <p>Adress: 123 Main Street, City</p>
+      <p>Phone: +123-456-7890</p>
+    </div>
+    <div class="social-icons">
+      <a href="https://t.me/DeN6096" target="_blank">
+        <img src="assets/telegram.svg" alt="Telegram" />
+      </a>
+      <a href="viber://chat?number=+380679583012" target="_blank">
+        <img src="assets/icons8-viber.svg" alt="Viber" />
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=100079332690700" target="_blank">
+        <img src="assets/icons8-facebook.svg" alt="Facebook" />
+      </a>
+      <a href="https://www.instagram.com/technika_drohobych" target="_blank">
+        <img src="assets/icons8-instagram.svg" alt="Instagram" />
+      </a>
+    </div>
+  </div>
+</div>

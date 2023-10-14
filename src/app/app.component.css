@@ -9,6 +9,7 @@
   padding: 20px;
   background-color: #1a1a1a;
   color: white;
+  font-family: "Bell MT";
 
 @media screen and (max-width: 768px) {
 
@@ -47,4 +48,65 @@
    color: white;
  }
 }
+}
+
+.footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.contact-info {
+  text-align: left;
+}
+
+.social-icons a {
+  margin: 0 10px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 24px;
+}
+
+.social-icons img {
+  width: 30px;
+  height: 30px;
+}
+
+/* Media query for smaller screens (e.g., mobile devices) */
+@media (max-width: 768px) {
+  .footer {
+    padding: 10px;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-info {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .social-icons {
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  .social-icons a {
+    margin: 0 5px;
+    font-size: 20px;
+  }
+
+  .social-icons img {
+    width: 20px;
+    height: 20px;
+  }
 }

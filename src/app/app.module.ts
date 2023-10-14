@@ -6,15 +6,19 @@ import { ProductComponent } from './components/product/product.component';
 import {HttpClientModule} from "@angular/common/http";
 import {ProductService} from "./services/product.service";
 import { LoginComponent } from './components/login/login.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UserService } from './services/user.service';
 import { SingleProductComponent } from './components/single-product/single-product.component';
+import { CreateNewProductComponent } from './components/create-new-product/create-new-product.component';
+import { UpdateProductComponent } from './components/update-product/update-product.component';
 
 
 let routers = [
   {path: '', component: ProductComponent},
   {path: 'login', component: LoginComponent},
   {path: 'product/:id', component: SingleProductComponent},
+  {path: 'create', component: CreateNewProductComponent},
+  {path: 'edit/:id', component: UpdateProductComponent}
 ]
 
 // @ts-ignore
@@ -24,12 +28,15 @@ let routers = [
     ProductComponent,
     LoginComponent,
     SingleProductComponent,
+    CreateNewProductComponent,
+    UpdateProductComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RouterModule.forRoot(routers),
     ReactiveFormsModule,
+    BrowserModule, FormsModule,
   ],
   providers: [ProductService, UserService],
   bootstrap: [AppComponent]

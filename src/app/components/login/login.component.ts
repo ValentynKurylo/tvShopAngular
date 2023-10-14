@@ -27,13 +27,19 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       const loginData = this.loginForm.value;
       console.log(loginData)
-      this.authService.login(loginData).subscribe(value => {
-        console.log(value)
-        localStorage.setItem("token", value.token)
-        localStorage.setItem('user', value.user)
-        window.location.reload();
-        alert(`Hello ${value.user.username}!`)
-      })
+        this.authService.login(loginData).subscribe(value => {
+          console.log(value.user_1)
+          localStorage.setItem("token", value.token)
+          localStorage.setItem("user", value.user_1)
+          localStorage.setItem("role", value.user_1.role)
+          window.location.reload();
+          alert(`Hello ${value.user_1.username}!`)
+          console.log(localStorage.getItem('user'))
+        }, error => {
+          console.log(error)
+          alert(error.error.message)
+        })
+
     } else {
       alert("Wrong email or password")
     }

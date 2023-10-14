@@ -8,7 +8,7 @@ import { UserService } from './services/user.service';
 })
 export class AppComponent implements OnInit{
   title = 'tvShopAngular';
-  
+
   isLoggedIn: boolean = false;
   isAdmin: boolean = false;
   user: any = {
@@ -25,17 +25,17 @@ export class AppComponent implements OnInit{
   }
 
   checkUserStatus() {
-    this.user = localStorage.getItem('user')
-    console.log(this.user)
-    if (this.user) {
-      this.isLoggedIn = true;
-      if (this.user === 'admin') {
-        this.isAdmin = true;
-      } else {
-        this.isAdmin = false
-      }
+    if(localStorage.getItem("token")){
+      this.isLoggedIn = true
+    }else {
+      localStorage.removeItem("token")
+      this.isLoggedIn = false
+      localStorage.removeItem("user")
+      localStorage.removeItem("role")
     }
-
+    if(localStorage.getItem("role") === "admin"){
+      this.isAdmin = true
+    }
   }
 
   logout() {
