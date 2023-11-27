@@ -8,7 +8,7 @@ import {Product} from "../models/product.model";
 })
 export class ProductService {
 
-  private url = "http://localhost:3000"
+  private url = "http://localhost:3001"
 
   constructor(private httpClient: HttpClient){ }
 
